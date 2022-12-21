@@ -1,0 +1,54 @@
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>身份证照片生成器网页版</title>
+<style>
+body{background-color: #333333;}
+#make{border-radius: 5px;position: absolute;left: 100px;top: 75px;}
+#help{position: absolute;top: 600px;left: 100px;color: #ffffff;background-color: #335577;border-radius: 10px;}
+a{color: #ccccff;}
+</style>
+</head>
+<body>
+<iframe id="make" src="mk.html" frameBorder="0" width="1000" height="480"></iframe>
+<div id="help">
+<blockquote>
+<h1>身份证照片生成器网页版 使用教程</h1>
+<p>Q: 如何保存图片</p>
+<p>A: 请勿右键保存，请截图（本网页采用的是简易方案）</p>
+<p>Q: 怎么导入本地图片作为头像</p>
+<p>A: 右键本地图片选择复制文件地址，然后粘贴到下面的地址转换器，提示已复制后粘贴到头像链接即可。</p>
+<p>Q: 怎么导入网络图片作为头像</p>
+<p>A: 网上找个头像，右键复制图片链接，然后粘贴到头像链接即可。</p>
+<p>Q: 为什么号码不能是15位数</p>
+<p>A: 因为这个生成的是第二代身份证照片啊</p>
+<p>Q: 能生成身份证背面吗</p>
+<p>A: 网页版暂时不能，如需生成请点击<a href="https://github.com/8bd8/idcard_photo/blob/main/Download/%E8%BA%AB%E4%BB%BD%E8%AF%81%E7%85%A7%E7%89%87%E7%94%9F%E6%88%90%E5%99%A8_%E5%8A%A0%E5%BC%BA%E7%89%88.exe?raw=true">EXE下载地址</a>下载。</p>
+<p>Q: 没有准备头像怎么办</p>
+<p>A: 在头像链接输入三选一(man默认男，woman默认女，mht马化腾 )即可</p>
+<h1>地址转换器</h1>
+<input type="text" id="convert"/><button id="convertx" onclick="convert()">转换</button>
+</blockquote>
+</div>
+<div style="position: absolute;top: 1400px;">&quot;</div>
+</body>
+<footer>
+<script>
+function copyHandle(content,x){
+  let copy = (e)=>{
+      e.preventDefault()
+      e.clipboardData.setData('text/plain',content)
+      alert(x)
+      document.removeEventListener('copy',copy)
+  }
+  document.addEventListener('copy',copy)
+  document.execCommand("Copy");
+}
+function convert(){
+  var x=document.getElementById("convert").value
+  var y="file:///"+x.replaceAll(/\\/g,"/").replace(/"/g,"")
+  copyHandle(y,"已将转换完成的链接复制到剪贴板。")
+}
+</script>
+</footer>
+</html>

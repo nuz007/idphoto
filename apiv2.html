@@ -1,0 +1,71 @@
+<html>
+<head>
+<meta charset="utf-8"/>
+<style>
+*{margin: 0;padding: 0;position: absolute;}
+@font-face {
+    font-family: "otherfont";
+    src: url(fonts/hei.ttf);
+}
+@font-face {
+    font-family: "birthdayfont";
+    src: url(fonts/birthday.ttf);
+}
+@font-face {
+    font-family: "idnumfont";
+    src: url(fonts/idnum.ttf);
+}
+#idnum{font-family: "idnumfont";font-size: 25px}
+#name{font-family: "otherfont";font-size: 18px;}
+#sex,#ethnic,#address{font-family: "otherfont";font-size: 17px;}
+#year,#month,#day{font-family: "birthdayfont";font-size: 17px;}
+#person{left:380px;top:60px}
+
+</style>
+</head>
+<body>
+<img src="demo.png" width="585" height="375"/>
+<span id="name" style="left: 108px;top: 71px;width: 70px;"></span>
+<span id="sex" style="left: 108px;top: 114px;width: 1px;"></span>
+<span id="ethnic" style="left: 240px;top: 114px;width: 120px;">汉</span>
+<span id="year" style="left: 108px;top: 155px;width: 120px;"></span>
+<span id="month" style="left: 215px;top: 155px;width: 120px;"></span>
+<span id="day" style="left: 270px;top: 155px;width: 120px;"></span>
+<span id="address" style="left: 108px;top: 197px;width: 190px;"></span>
+<span id="idnum" style="left: 183px;top: 305px;width: 220px;"></span>
+<img  id="person" width="146",height="94"/>
+
+</body>
+<footer>
+<script>
+function Param(variable)
+{
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i=0;i<vars.length;i++) {
+        var pair = vars[i].split("=");
+        if(pair[0] == variable){return pair[1];}
+    }
+    return(false);
+}
+function Sex()
+{
+    var tmp=parseInt(decodeURI(Param("idnum")).substring(16,17))
+    if(tmp%2){return "男"}
+    else{return "女"}
+}
+
+document.getElementById("name").innerText=decodeURI(Param("name"));
+document.getElementById("sex").innerText=Sex();
+document.getElementById("ethnic").innerText=decodeURI(Param("ethnic"));
+document.getElementById("year").innerText=parseInt(decodeURI(Param("idnum")).substring(6,10));
+document.getElementById("month").innerText=parseInt(decodeURI(Param("idnum")).substring(10,12));
+document.getElementById("day").innerText=parseInt(decodeURI(Param("idnum")).substring(12,14));
+document.getElementById("address").innerText=decodeURI(Param("address"));
+document.getElementById("idnum").innerText=decodeURI(Param("idnum"));
+document.getElementById("person").src=decodeURI(Param("person"));
+
+
+</script>
+</footer>
+</html>

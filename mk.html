@@ -1,0 +1,53 @@
+<html>
+<head>
+<meta charset="utf-8"/>
+<style>
+*{margin: 5px;}
+#titlebar{width: 99%;text-align: center;background-color: #335555;color: #ffffff;font-size: 16px;position: absolute;left: 0px;top: 0px;}
+#bar{position: absolute;left: 5px;top: 0px;}
+body{background-color:#000000;}
+input{width: 220px;background-color: #333333;color: #ffffff;border: 1px solid #333377;}
+#idgen{border: #225533 5px solid;border-radius: 15px;position: absolute;left: 20px;top: 35px;}
+#generator{width: 300px;background-color: #221100;color: #eeeeee;border: #251153 5px solid;border-radius: 10px;left: 650px;top:35px;position: absolute;}
+#make{font-size: 16px;background-color: #00a030;color:#ffffff;border: 0px;border-radius: 5px;left: 650px;top:380px;width: 100px;height: 40px;text-align: center;position: absolute;}
+</style>
+
+</head>
+<body>
+<div id="titlebar">身份证照片生成器</div>
+<img src="bar.png" id="bar" width="60" height="20"/>
+<iframe id="idgen" frameBorder="0" src="apiv2.html?name=马化腾&ethnic=汉&address=广东省深圳市福田区福中路315号黄埔雅苑乐悠园3座12D&idnum=440301197110292910&person=mht" width="585" height="375"></iframe><br/>
+<!--apiv2.html?name=陈伯睿&sex=男&ethnic=汉&address=北京市海淀区北京市海淀区北京市海淀区&idnum=110108201005205738&person=file:///C:/Users/admin/Desktop/陈伯睿照片.png-->
+
+<div id="generator">
+姓　名:　<input id="name" type="text"/><br/>
+民　族:　<input id="ethnic" type="text"/><br/>
+住　址:　<input id="address" type="text"/><br/>
+身份证号:<input id="idnum" type="text"/><br/>
+头像链接:<input id="person" type="url"/><br/>
+</div>
+
+<button id="make" onclick="Make()">
+<span>生成</span>
+</button>
+
+</body>
+<footer>
+<script>
+function Make()
+{
+    var name=document.getElementById("name").value
+    var ethnic=document.getElementById("ethnic").value
+    var address=document.getElementById("address").value
+    var idnum=document.getElementById("idnum").value
+    var person=document.getElementById("person").value
+    if (isNaN(idnum.substring(0,17))){alert("身份证号前17位不是数字");return false}
+    if (idnum.length!=18){alert("身份证号必须为18位");return false}
+    if (isNaN(idnum.substring(17,18))&&idnum.substring(17,18)!="X"){alert("如果身份证号最后一位非数字，那么必须为大写X");return false}
+    document.getElementById("idgen").src="apiv2.html?name="+name+"&ethnic="+ethnic+"&address="+address+"&idnum="+idnum+"&person="+person
+    return "apiv2.html?name="+name+"&ethnic="+ethnic+"&address="+address+"&idnum="+idnum+"&person="+person
+}
+</script>
+</footer>
+</html>
+
